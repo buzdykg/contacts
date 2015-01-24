@@ -20,4 +20,22 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
+	public function postWelcome()
+	{
+		$lines = file(Input::file('csv')->getRealPath(), FILE_IGNORE_NEW_LINES);
+
+		foreach ($lines as $key => $value)
+		{
+			$csv[$key] = str_getcsv($value, ';', '"');
+		}
+
+		$processor = App::make('\Contact\Processor');
+		$results   = $processor->process($csv);
+
+		return View::make('hello', [
+			'processedData' => $results,
+			'originalData'  => $csv
+		]);
+	}
+
 }

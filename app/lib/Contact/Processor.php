@@ -64,38 +64,29 @@ class Processor
     protected function expandRow($row)
     {
         $newSet = [];
-        $toUnset= [];
 
-        foreach ($row as $i => $col) {
-            if (strpos($col, ',')) {
-                foreach (explode(',', $col) as $newCol) {
-                    if (!trim($newCol)) {
-                        continue;
-                    }
-                    $newRow = $row;
-                    $newRow[$i] = $newCol;
-                    $newSet[] = $newRow;
+        if (strpos($row[7], ',')) {
+            $jobServices = explode(',', $row[7]);
+
+            for ($i=0; $i<count($jobServices); $i++) {
+                $newCol = $jobServices[$i];
+                if (!trim($newCol)) {
+                    continue;
                 }
 
-                foreach ($newSet as $j => $newRow) {
-                    $expanded = $this->expandRow($newRow);
-                    if (count($expanded) > 1) {
-                        $toUnset[] = $j;
+                $newRow = $row;
+                $newRow[7] = $newCol;
+
+                if (count($newSet) > 0) {
+                    for ($j=8; $j<=10; $j++) {
+                        unset($newRow[$j]);
                     }
-                    /* @todo debug to wipe out array_unique */
-                    $newSet = array_unique(array_merge($newSet, $expanded), SORT_REGULAR);
                 }
 
-                break;
+                $newSet[] = $newRow;
             }
-        }
-
-        foreach ($toUnset as $i) {
-            unset($newSet[$i]);
-        }
-
-        if (count($newSet) == 0) {
-            $newSet = [$row];
+        } else {
+            $newSet[] = $row;
         }
 
         return $newSet;

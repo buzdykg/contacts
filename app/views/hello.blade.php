@@ -31,7 +31,7 @@
 			<div class="col-md-4">
 				<div class="title">About</div>
 				<ol>
-					<li>If any field contains comma - the row is splitted to several rows;</li>
+					<li>If a job service field contains comma - the row is splitted to several rows;</li>
 					<li>Every value is normilized. E.g. trimmed or state name changed to state code;</li>
 					<li>Field validation;</li>
 					<li>Fields with hard failures get their values restored to original;</li>
@@ -78,7 +78,9 @@
 						<tr>
 						@for ($i = 0; $i <= 10; $i++)
 							<td @if (isset($row[11]) && array_search($i, $row[11]) !== false) class="error" @endif>
+								@if (isset($row[$i]))
 								{{{$row[$i]}}}
+								@endif
 							</td>
 						@endfor
 						</tr>
@@ -109,7 +111,7 @@
 						@foreach ($originalData as $row)
 							<tr>
 								@for ($i = 0; $i <= 10; $i++)
-									<td>
+									<td>)
 										{{{$row[$i]}}}
 									</td>
 								@endfor

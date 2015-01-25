@@ -76,8 +76,8 @@
 					</tr>
 					@foreach ($processedData as $row)
 						<tr>
-						@for ($i = 0; $i <= 10; $i++)
-							<td @if (isset($row[11]) && array_search($i, $row[11]) !== false) class="error" @endif>
+						@for ($i = 0; $i <= 11; $i++)
+							<td @if (isset($row[12]) && array_search($i, $row[12]) !== false) class="error" @endif>
 								@if (isset($row[$i]))
 								{{{$row[$i]}}}
 								@endif
@@ -103,6 +103,7 @@
 							<td>Street</td>
 							<td>City</td>
 							<td>State</td>
+							<td>Zip Code</td>
 							<td>Job service</td>
 							<td>Price</td>
 							<td>Cycle In</td>
@@ -111,7 +112,7 @@
 						@foreach ($originalData as $row)
 							<tr>
 								@for ($i = 0; $i <= 10; $i++)
-									<td>)
+									<td>
 										{{{$row[$i]}}}
 									</td>
 								@endfor

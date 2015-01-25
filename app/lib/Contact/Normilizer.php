@@ -17,12 +17,13 @@ class Normilizer extends BaseNormilizer {
             /*street*/    4  => 0,
             /*city*/      5  => 0,
             /*state*/     6  => Normilizer::STATE,
+            /*zip code*/  7  => Normilizer::NUMBERS_ONLY,
             /*job
-                service*/ 7  => 0,
-            /*price*/     8  => Normilizer::FLOAT_NUMBER,
-            /*cycle in*/  9  => Normilizer::NUMBERS_ONLY,
+                service*/ 8  => 0,
+            /*price*/     9  => Normilizer::FLOAT_NUMBER,
+            /*cycle in*/  10  => Normilizer::NUMBERS_ONLY,
             /*next job
-                   date*/ 10 => 0,
+                   date*/ 11 => 0,
         ]);
     }
 

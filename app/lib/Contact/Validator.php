@@ -16,12 +16,13 @@ class Validator extends BaseValidator {
             /*street*/    4  => 'number_string',
             /*city*/      5  => '',
             /*state*/     6  => 'dictionary:states',
+            /*zip code*/  7  => 'required|integer|exact_length:5',
             /*job
-                service*/ 7  => 'required',
-            /*price*/     8  => 'float',
-            /*cycle in*/  9  => 'integer',
+                service*/ 8  => 'required',
+            /*price*/     9  => 'float',
+            /*cycle in*/  10  => 'integer',
             /*next job
-                   date*/ 10 => 'future',
+                   date*/ 11 => 'future',
         ]);
     }
 }

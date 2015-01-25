@@ -36,7 +36,7 @@ class Validator {
             }
 
             if (count($hard_failures)) {
-                $dataset[$i][11] = $hard_failures;
+                $dataset[$i][count($this->rules)] = $hard_failures;
             }
         }
 
@@ -114,4 +114,8 @@ class Validator {
         return ($then !== false || $then != -1) && $then > $now;
     }
 
+    protected function exact_length($val, $length)
+    {
+        return strlen($val) === (int) $length;
+    }
 }
